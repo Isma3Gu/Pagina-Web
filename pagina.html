@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Proyecto Invernadero</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+
+    header {
+      background-color: #4CAF50;
+      color: white;
+      padding: 1em;
+      text-align: center;
+    }
+
+    nav {
+      background-color: #388E3C;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    nav button {
+      background: none;
+      border: none;
+      color: white;
+      padding: 1em 2em;
+      cursor: pointer;
+      font-size: 1em;
+      transition: background 0.3s;
+    }
+
+    nav button:hover,
+    nav button.active {
+      background-color: #2E7D32;
+    }
+
+    section {
+      display: none;
+      padding: 2em;
+      text-align: center;
+      min-height: 70vh;
+    }
+
+    section.active {
+      display: block;
+    }
+
+    .galeria, .simulacion {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 1em;
+    }
+
+    .galeria img, .simulacion img {
+      width: 300px;
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+    }
+
+    ol, ul {
+      text-align: left;
+      display: inline-block;
+      margin-left: 20px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1em;
+      background-color: #333;
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      nav button {
+        padding: 1em;
+        flex: 1 1 100%;
+      }
+      .galeria img, .simulacion img {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Invernadero Automatizado con LabVIEW</h1>
+</header>
+
+<nav>
+  <button class="tab active" data-section="descripcion">Descripción</button>
+  <button class="tab" data-section="esquema">Esquema</button>
+  <button class="tab" data-section="Interfas">Interfas</button>
+  <button class="tab" data-section="galeria">Galería</button>
+</nav>
+
+<section id="descripcion" class="active">
+  <h2>Descripción del Proyecto</h2>
+  <p>Este proyecto utiliza LabVIEW para controlar un sistema de invernadero inteligente. Se integran sensores de humedad de tierra y ambiente para monitorear las condiciones y mejorar el cultivo.</p>
+  <p>Dentro de este proyecto utilizaremos varios sensores como lo son los siguientes:</p>
+  <h3>Lista de materiales</h3>
+  <ol>
+    <li>Arduino Mega 2560</li>
+    <li>Sensor de humedad y temperatura DHT11</li>
+    <li>Sensor de humedad de suelo FC28</li>
+    <li>Fotoresistencia</li>
+    <li>Bomba de agua</li>
+    <li>LED</li>
+    <li>Ventilador</li>
+  </ol>
+</section>
+
+<section id="esquema">
+  <h2>Esquema del bloques de LabVIEW</h2>
+  <p>Podremos observar los diagramas de bloques de LabVIEW </p>
+  <div class="simulacion">
+   <style>
+  img {
+    width: 200px; /* Tamaño inicial */
+    transition: transform 0.3s ease-in-out;
+  }
+
+  img:hover {
+    transform: scale(2); /* Agranda la imagen en un 20% */
+  }
+</style>
+
+<img src="Esquema.jpg" alt="Esquema de diagrama de bloques">
+<img src="esquema2.jpg" alt="Segunda parte del diagrama de bloques">
+<img src="Esquema3.jpg" alt="Tercera parte del diagrama de bloques">
+  </div>
+</section>
+
+<section id="galeria">
+  <h2>Galería del Proyecto</h2>
+  <div class="galeria">
+    <img src="invernadero.jpg" alt="Vista general del invernadero">
+    <img src="circuito armado.jpg" alt="Esquema del circuito">
+    <img src="pantalla.jpg" alt="Pantalla mostrando datos">
+  </div>
+</section>
+
+<section id="Interfas">
+  <h2>Interfas Gráfica</h2>
+   <p>La intefas que el usuario vera sera la siguiente</p>
+  <div class="Interfas">
+     <style>
+  img {
+    width: 200px; 
+    transition: transform 0.3s ease-in-out;
+  }
+
+  img:hover {
+    transform: scale(2); 
+  }
+</style>
+    <img src="pantalla principal.jpg" alt="Interfas principal">
+    <p>Parametros de temperatura y parametros de humedad</p>
+    <img src="p2P.jpg" alt="Parametros de luminicidad">
+    <p>Parametros de luminicidad</p>
+    <img src="p3p.jpg" alt="actuadores">
+    <p>Interfas donde se vera que los actuadores estan funcionando</p>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2025 Industria Inteligente | Ismael Guerrero | Diego Fajardo | Luis Martínez | Guillermo González | Jasiel Hernández</p>
+</footer>
+
+<script>
+  const tabs = document.querySelectorAll('.tab');
+  const sections = document.querySelectorAll('section');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      // Quitar clase 'active' de todos
+      tabs.forEach(t => t.classList.remove('active'));
+      sections.forEach(sec => sec.classList.remove('active'));
+
+      // Activar el clicado
+      tab.classList.add('active');
+      const sectionId = tab.getAttribute('data-section');
+      document.getElementById(sectionId).classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
